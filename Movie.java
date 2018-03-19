@@ -1,7 +1,9 @@
 public class Movie
 {
-  public static void main(String[] args)
+ ArrayList<MovieTime> timeList;
+  
+  public Movie()
   {
-    System.out.println("Hello World");
+    timeList=new ArrayList<MovieTime>();
   }
 }
