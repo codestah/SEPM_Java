@@ -1,15 +1,10 @@
+import java.util.Scanner;
 public class Main
 {
-  
-  Scanner loginInput = new Scanner(System.in);
-  Scanner mainMenuOption = new Scanner(System.in);
-  Scanner searchMenuOption = new Scanner(System.in);
-  Scanner bookingMenuOption = new Scanner(System.in);
-
-  
-  public static string login() {
-    string id;
-    
+ 
+  public static int login() {
+    int id = 0;
+    Scanner loginInput = new Scanner(System.in);
     System.out.println("Movie Plaze Theatre Booking System");
     System.out.println("-------------------------\n");
     System.out.println("Enter User ID to Login.");
@@ -18,14 +13,14 @@ public class Main
     
     System.out.print("Enter User ID: ");
     
-    id = loginInput; // Enter Login Logic here
+    id = loginInput.nextInt(); // Enter Login Logic here
     return mainMenu();
   }
   
   public static int mainMenu() {
 
           int menuNumber = 0;
-
+					Scanner mainMenuOption = new Scanner(System.in);
           System.out.println("Main Menu");
           System.out.println("-------------------------\n");
           System.out.println("1. Display Movie Sessions By Cinema");
@@ -35,7 +30,7 @@ public class Main
           System.out.println("5. Exit");
 
           System.out.print("Enter Menu Number: ");
-	        menuNumber = select.nextInt();
+	        menuNumber = mainMenuOption.nextInt();
           return menuNumber; 
     
     if(menuNumber==1)
@@ -52,8 +47,8 @@ public class Main
     
     if(menuNumber==3)
 	    {
-        int searchMenu;
-  
+        int searchMenu = 0;
+  			Scanner searchMenuOption = new Scanner(System.in);
         System.out.println("Search");
         System.out.println("----------------------------------\n");
         System.out.println("1. Search By Movie Title");
@@ -64,7 +59,7 @@ public class Main
     
         System.out.print("Enter Menu Number: ");
     
-        searchMenu = searchMenuOption;
+        searchMenu = searchMenuOption.nextInt();
         return searchMenu;
       
         if (searchMenu==1)
@@ -82,8 +77,8 @@ public class Main
     
     if(menuNumber==4)
 	    {
-        int bookingMenu;
-  
+        int bookingMenu = 0;
+  			Scanner bookingMenuOption = new Scanner(System.in);
         System.out.println("Bookings");
         System.out.println("----------------------------------\n");
         System.out.println("1. Create a Booking");
@@ -94,7 +89,7 @@ public class Main
     
         System.out.print("Enter Menu Number: ");
     
-        bookingMenu = bookingMenuOption;
+				bookingMenu=bookingMenuOption.nextInt();
         return bookingMenu;
       
         if (bookingMenu==1)
@@ -109,6 +104,7 @@ public class Main
           System.out.println("----------------------------------\n");
         }
       } // End Menu Number 4 
+		return;
     } // End Main Menu
 } // End Class
 
