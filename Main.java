@@ -33,21 +33,15 @@ public class Main
 	        menuNumber = mainMenuOption.nextInt();
           return menuNumber; 
     
-    if(menuNumber==1)
-	    {
-        System.out.println("Display Movie Sessions By Cinema");
-        System.out.println("----------------------------------\n");
-      }
-    
-    if(menuNumber==2)
-	    {
-        System.out.println("Display Movie Sessions By Movie Title");
-        System.out.println("----------------------------------\n");
-      }
-    
-    if(menuNumber==3)
-	    {
-        int searchMenu = 0;
+    switch(menuNumber)
+    {
+      case 1: System.out.println("Display Movie Sessions By Cinema");
+        System.out.println("----------------------------------");
+        break;
+      case 2: System.out.println("Display Movie Sessions By Movie Title");
+        System.out.println("----------------------------------");
+        break;
+      case 3: int searchMenu = 0;
   			Scanner searchMenuOption = new Scanner(System.in);
         System.out.println("Search");
         System.out.println("----------------------------------\n");
@@ -73,11 +67,9 @@ public class Main
           System.out.println("Search By Cinema");
           System.out.println("----------------------------------\n");
         }
-      } // End Menu Number 3
-    
-    if(menuNumber==4)
-	    {
-        int bookingMenu = 0;
+      
+        break;
+      case 4:  int bookingMenu = 0;
   			Scanner bookingMenuOption = new Scanner(System.in);
         System.out.println("Bookings");
         System.out.println("----------------------------------\n");
@@ -103,8 +95,9 @@ public class Main
           System.out.println("Delete a Booking");
           System.out.println("----------------------------------\n");
         }
-      } // End Menu Number 4 
-		return;
+      
+        break;
+    }
     } // End Main Menu
 } // End Class
 
