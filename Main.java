@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Main
 {
  
-  public static int login() {
+/*  public static int login() {
     int id = 0;
     Scanner loginInput = new Scanner(System.in);
     System.out.println("Movie Plaze Theatre Booking System");
@@ -14,10 +14,10 @@ public class Main
     System.out.print("Enter User ID: ");
     
     id = loginInput.nextInt(); // Enter Login Logic here
-    return mainMenu();
-  }
+    
+  }*/
   
-  public static int mainMenu() {
+  public static void main(String[] args) {
 
           int menuNumber = 0;
 					Scanner mainMenuOption = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class Main
 
           System.out.print("Enter Menu Number: ");
 	        menuNumber = mainMenuOption.nextInt();
-          return menuNumber; 
+          
     
     switch(menuNumber)
     {
@@ -54,7 +54,7 @@ public class Main
         System.out.print("Enter Menu Number: ");
     
         searchMenu = searchMenuOption.nextInt();
-        return searchMenu;
+        
       
         if (searchMenu==1)
         {
@@ -82,7 +82,7 @@ public class Main
         System.out.print("Enter Menu Number: ");
     
 				bookingMenu=bookingMenuOption.nextInt();
-        return bookingMenu;
+        
       
         if (bookingMenu==1)
         {
@@ -97,6 +97,7 @@ public class Main
         }
       
         break;
+      default: System.out.println("Invalid choice. Please select a valid choice from the menu.");
     }
     } // End Main Menu
 } // End Class
