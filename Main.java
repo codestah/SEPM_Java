@@ -19,6 +19,7 @@ public class Main
   
   public static void main(String[] args) {
 
+    public abstract void getMenu() {
           int menuNumber = 0;
 					Scanner mainMenuOption = new Scanner(System.in);
           System.out.println("Main Menu");
@@ -99,7 +100,8 @@ public class Main
         break;
       default: System.out.println("Invalid choice. Please select a valid choice from the menu.");
     }
-    } // End Main Menu
+    }
+  } // End Main Menu
 } // End Class
 
 
