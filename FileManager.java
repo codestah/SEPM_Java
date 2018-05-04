@@ -9,6 +9,8 @@ public class FileManager
     scan = new Scanner(System.in);
   }
   
+  
+  // Function to return everything in the csv file
   // Parse the csv file
   public List<ArrayList<String>> parseCSV(int index)
     throws FileNotFoundException {
