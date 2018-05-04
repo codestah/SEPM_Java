@@ -15,7 +15,7 @@ public class FileManager
   public List<ArrayList<String>> parseCSV(int index)
     throws FileNotFoundException {
     //Scanner class to read through file from beginning to end
-    Scanner scan;
+    Scanner scanner;
     scanner = new Scanner(new File("SessionList.csv"));
   }
   // New line, separated by pipe, comma separated columns
