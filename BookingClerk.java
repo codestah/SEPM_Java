@@ -1,4 +1,6 @@
 import java.awt.Toolkit;
+import java.util.*;
+
 public class BookingClerk extends Employee {
   
   public BookingClerk () {
@@ -140,12 +142,12 @@ public class BookingClerk extends Employee {
           System.out.println("----------------------------------\n");
           // Enter logic here to display: All Cinema Sessions for Tomb Raider
         }
-        if (cinemaMenu==6)
+        if (movieNumber==6)
         {
           public void getMenu();
         }
         
-        if (cinemaMenu==7)
+        if (movieNumber==7)
         {
           // Enter logic to exit the system
           Toolkit tk = Toolkit.getDefaultToolkit();
@@ -162,13 +164,15 @@ public class BookingClerk extends Employee {
         System.out.println("2. Cancel this Booking");
         System.out.println("3. Exit");
         System.out.print("Enter Menu Number: ");
-				createBookingNumber = createBookingOption.nextInt();
+				bookingNumber = createBookingOption.nextInt();
         System.out.println("\n");
   
         if (createBookingNumber==1)
         {
-          // Enter logic here to auto generate booking number
-          int bookingNumber = 0;
+          // Auto generate booking number
+          private static final AtomicInteger count = new AtomicInteger(0); 
+          private final int bookingID;
+          bookingID = count.incrementAndGet();
           
           // Array list to store the booking information
           ArrayList<String> createBooking = new ArrayList<String>();
