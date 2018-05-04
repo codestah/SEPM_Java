@@ -1,3 +1,4 @@
+import java.awt.Toolkit;
 public class BookingClerk extends Employee {
   
   public BookingClerk () {
@@ -10,58 +11,149 @@ public class BookingClerk extends Employee {
   
   @Override
   public void getMenu() {
-    int menuNumber = 0;
+          int menuNumber = 0;
 					Scanner mainMenuOption = new Scanner(System.in);
           System.out.println("Main Menu");
           System.out.println("-------------------------\n");
-          System.out.println("1. Display Movie Sessions By Cinema");
-          System.out.println("2. Display Movie Sessions By Movie Title");
-          System.out.println("3. Search");
-          System.out.println("4. Bookings");
-          System.out.println("5. Exit");
-
+          System.out.println("1. Search Movie Sessions By Cinema");
+          System.out.println("2. Search Movie Sessions By Movie Title");
+          System.out.println("3. Bookings");
+          System.out.println("4. Exit");
+          System.out.println("\n");
           System.out.print("Enter Menu Number: ");
 	        menuNumber = mainMenuOption.nextInt();
-          
-    
+           
     switch(menuNumber)
     {
-      case 1: System.out.println("Display Movie Sessions By Cinema");
-        System.out.println("----------------------------------");
-        break;
-      case 2: System.out.println("Display Movie Sessions By Movie Title");
-        System.out.println("----------------------------------");
-        break;
-      case 3: int searchMenu = 0;
-  			Scanner searchMenuOption = new Scanner(System.in);
-        System.out.println("Search");
+      case 1: 
+        Scanner searchByCinemaMenuOption = new Scanner(System.in);
+        int cinemaMenu = 0;
+        System.out.println("Display Movie Sessions By Cinema");
         System.out.println("----------------------------------\n");
-        System.out.println("1. Search By Movie Title");
-        System.out.println("2. Search By Cinema");
-        System.out.println("3. Back");
-        System.out.println("4. Exit");
+        System.out.println("1. St Kilda");
+        System.out.println("2. Melbourne CBD");
+        System.out.println("3. Fitzroy");
+        System.out.println("4. Lilydale");
+        System.out.println("5. Sunbury");
+        System.out.println("6. Back");
+        System.out.println("7. Exit");
         System.out.println("\n");
-    
         System.out.print("Enter Menu Number: ");
-    
-        searchMenu = searchMenuOption.nextInt();
+	      cinemaMenu = searchByCinemaMenuOption.nextInt();
+         
+        if (cinemaMenu==1)
+        {
+          System.out.println("All Movie Sessions at St Kilda Cinema");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Movie Sessions at St Kilda Cinema
+        }
         
-      
-        if (searchMenu==1)
+        if (cinemaMenu==2)
         {
-          System.out.println("Search By Movie Title");
+          System.out.println("All Movie Sessions at Melbourne CBD Cinema");
           System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Movie Sessions at Melbourne CBD Cinema
         }
-
-        if (searchMenu==2)
+        
+        if (cinemaMenu==3)
         {
-          System.out.println("Search By Cinema");
+          System.out.println("All Movie Sessions at Fitzroy Cinema");
           System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Movie Sessions at Fitzroy Cinema
         }
-      
+        
+        if (cinemaMenu==4)
+        {
+          System.out.println("All Movie Sessions at Lilydale Cinema");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Movie Sessions at Lilydale Cinema
+        }
+        
+        if (cinemaMenu==5)
+        {
+          System.out.println("All Movie Sessions at Sunbury Cinema");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Movie Sessions at Sunbury Cinema
+        } 
+        if (cinemaMenu==6)
+        {
+          public void getMenu();
+        }
+        
+        if (cinemaMenu==7)
+        {
+          Toolkit tk = Toolkit.getDefaultToolkit();
+          tk.beep();
+        } 
         break;
-      case 4:  int bookingMenu = 0;
-  			Scanner bookingMenuOption = new Scanner(System.in);
+        
+        
+        
+      case 2: 
+        Scanner searchByMovieMenuOption = new Scanner(System.in);
+        int movieNumber = 0;
+        System.out.println("Display Movie Sessions By Movie Title");
+        System.out.println("----------------------------------\n");
+        System.out.println("1. Black Panther");
+        System.out.println("2. The Avengers");
+        System.out.println("3. Guardians of the Galaxy");
+        System.out.println("4. Pacific Rim: Uprising");
+        System.out.println("5. Tomb Raider");
+        System.out.println("6. Back");
+        System.out.println("7. Exit");
+        System.out.println("\n");
+        System.out.print("Enter Menu Number: ");
+	      movieNumber = searchByMovieMenuOption.nextInt();
+        
+        if (movieNumber==1)
+        {
+          System.out.println("All Cinema Sessions for Black Panther");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Cinema Sessions for Black Panther
+        }
+        
+        if (movieNumber==2)
+        {
+          System.out.println("All Cinema Sessions for The Avengers");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Cinema Sessions for The Avengers
+        }
+        
+        if (movieNumber==3)
+        {
+          System.out.println("All Cinema Sessions for Guardians of the Galaxy");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Cinema Sessions for Guardians of the Galaxy
+        }
+        
+        if (movieNumber==4)
+        {
+          System.out.println("All Cinema Sessions for Pacific Rim: Uprising");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Cinema Sessions for Pacific Rim: Uprising
+        }
+        
+        if (movieNumber==5)
+        {
+          System.out.println("All Cinema Sessions for Tomb Raider");
+          System.out.println("----------------------------------\n");
+          // Enter logic here to display: All Cinema Sessions for Tomb Raider
+        }
+        if (cinemaMenu==6)
+        {
+          public void getMenu();
+        }
+        
+        if (cinemaMenu==7)
+        {
+          Toolkit tk = Toolkit.getDefaultToolkit();
+          tk.beep();
+        } 
+        break;
+        
+      case 3:  
+        Scanner bookingMenuOption = new Scanner(System.in);
+        int bookingMenu = 0;
         System.out.println("Bookings");
         System.out.println("----------------------------------\n");
         System.out.println("1. Create a Booking");
@@ -69,10 +161,8 @@ public class BookingClerk extends Employee {
         System.out.println("3. Back");
         System.out.println("4. Exit");
         System.out.println("\n");
-    
         System.out.print("Enter Menu Number: ");
-    
-				bookingMenu=bookingMenuOption.nextInt();
+				bookingMenu = bookingMenuOption.nextInt();
         
       
         if (bookingMenu==1)
@@ -85,6 +175,17 @@ public class BookingClerk extends Employee {
         {
           System.out.println("Delete a Booking");
           System.out.println("----------------------------------\n");
+        }
+        
+        if (bookingMenu==3)
+        {
+          public void getMenu();
+        }
+        
+        if (bookingMenu==4)
+        {
+          Toolkit tk = Toolkit.getDefaultToolkit();
+          tk.beep();
         }
       
         break;

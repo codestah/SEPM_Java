@@ -26,7 +26,7 @@ public class FileManager
   List<ArrayList<String>> csv = new ArrayList<ArrayList<String>>();
   int i = 0;
   
-  // Use while loop using scanner to fill up the csv arraylist
+  // While loop using scanner to fill up the csv arraylist
   // The while loop assigns scanner nodes in 6's to the nested array list
   // So we get csv file column structure
   while (scanner.hasNext()) {
