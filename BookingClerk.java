@@ -17,8 +17,9 @@ public class BookingClerk extends Employee {
           System.out.println("-------------------------\n");
           System.out.println("1. Search Movie Sessions By Cinema");
           System.out.println("2. Search Movie Sessions By Movie Title");
-          System.out.println("3. Bookings");
-          System.out.println("4. Exit");
+          System.out.println("3. Create a Booking");
+          System.out.println("4. Delete a Booking");
+          System.out.println("5. Exit");
           System.out.println("\n");
           System.out.print("Enter Menu Number: ");
 	        menuNumber = mainMenuOption.nextInt();
@@ -146,46 +147,97 @@ public class BookingClerk extends Employee {
         
         if (cinemaMenu==7)
         {
+          // Enter logic to exit the system
           Toolkit tk = Toolkit.getDefaultToolkit();
           tk.beep();
         } 
         break;
         
       case 3:  
-        Scanner bookingMenuOption = new Scanner(System.in);
-        int bookingMenu = 0;
-        System.out.println("Bookings");
+        Scanner createBookingOption = new Scanner(System.in);
+        int createBookingNumber = 0;
+        System.out.println("Create a Booking");
         System.out.println("----------------------------------\n");
-        System.out.println("1. Create a Booking");
-        System.out.println("2. Delete a Booking");
-        System.out.println("3. Back");
-        System.out.println("4. Exit");
-        System.out.println("\n");
+        System.out.println("1. Enter Movie Title");
+        System.out.println("2. Cancel this Booking");
+        System.out.println("3. Exit");
         System.out.print("Enter Menu Number: ");
-				bookingMenu = bookingMenuOption.nextInt();
-        
-      
-        if (bookingMenu==1)
+				createBookingNumber = createBookingOption.nextInt();
+        System.out.println("\n");
+  
+        if (createBookingNumber==1)
         {
-          System.out.println("Create a Booking");
-          System.out.println("----------------------------------\n");
+          // Enter logic here to auto generate booking number
+          int bookingNumber = 0;
+          
+          // Array list to store the booking information
+          ArrayList<String> createBooking = new ArrayList<String>();
+          
+          // Set up variables to store booking information
+          Scanner bookingMovie = new Scanner(System.in);
+          Scanner bookingCinema = new Scanner(System.in);
+          Scanner bookingDate = new Scanner(System.in);
+          Scanner bookingSession = new Scanner(System.in);
+          Scanner bookingEmail = new Scanner(System.in);
+          Scanner bookingBooking = new Scanner(System.in);
+          
+          // Enter Movie Title
+          System.out.print("Enter Movie Title: ");
+          String movie = bookingMovie.nextLine();
+          // Adding movie to arrayList
+          createBooking.add(movie);
+          System.out.print("You have selected: " + movie);
+          
+          // Enter Cinema Location
+          System.out.print("Enter Cinema Location: );
+          String cinema = bookingCinema.nextLine();   
+          // Adding cinema to arrayList
+          createBooking.add(cinema);
+          System.out.print("You have selected: " + movie + ", " + cinema);
+          
+          // Enter Date                 
+          System.out.print("Enter Date DDMM: ");
+          String date = bookingDate.nextLine();
+          // Adding date to arrayList
+          createBooking.add(date);
+          System.out.print("You have selected: " + movie + ", " + cinema + ", " + date);               
+                          
+          // Enter Session Time                 
+          System.out.print("Enter Session HHMM: ");
+          String session = bookingSession.nextLine();
+          // Adding session to arrayList
+          createBooking.add(session);
+          System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session); 
+             
+          // Enter Customer Email                
+          System.out.print("Enter Customer Email: ");
+          String email = bookingEmail.nextLine();
+          // Adding session to arrayList
+          createBooking.add(email);
+          System.out.println("\n");                 
+          System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session); 
+          System.out.println("Customer Email: " + email);
+          System.out.println("\n");
+          System.out.print("Finalise Booking Y / N: ");
+          
+          if (bookingBooking.nextChar().equals("Y")) {
+            // Enter logic to save this booking using the createBooking arraylist and include the booking number
+          } else {
+            System.out.print("This booking has been cancelled.")
+          }
+                           
         }
-
-        if (bookingMenu==2)
-        {
-          System.out.println("Delete a Booking");
-          System.out.println("----------------------------------\n");
-        }
-        
-        if (bookingMenu==3)
+        if (createBookingNumber==2)
         {
           public void getMenu();
         }
         
-        if (bookingMenu==4)
-        {
+        if (createBookingNumber==3)
+        { 
+          // Makes a beep sound upon exiting the system
           Toolkit tk = Toolkit.getDefaultToolkit();
-          tk.beep();
+          tk.beep(); 
+          // Enter logic to exit the system
         }
       
         break;
