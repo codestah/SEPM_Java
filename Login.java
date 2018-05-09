@@ -1,22 +1,45 @@
 import java.util.Scanner;
 
 public class Login {
-  public static void main(String[] args) {
-    Scanner login = new Scanner(System.in);
-    
-    String user, pass;
-    
-    System.out.print("Enter your username: ");
+
+    Scanner login ;
+    File file ;
+    public Login()
+    {
+      login = new Scanner(System.in);
+      file = new File("login.csv");
+    }
+    void Login()
+    {
+
+    String user, pass,userT,passT;
+
+    System.out.println("Enter your username: ");
     user = input.nextLine();
-    System.out.println("Your username is: " + user);
-    
-    System.out.print("Enter your password: ");
+
+    System.out.println("Enter your password: ");
     pass = input.nextLine();
-    System.out.println("Your password is: " + pass);
+      try {
+        sc = new Scanner(file);
+        sc.useDelimiter(",");
+        // Check if there is another line of input
+        while(sc.hasNextLine()){
+          String str = sc.nextLine();
+          while (sc.hasNext())
+          {
+            userT=sc.next();
+            passT=sc.next();
+          }
+        }
+
+      } catch (IOException  exp) {
+        // TODO Auto-generated catch block
+        exp.printStackTrace();
+      }
     
-    if(user.equals("admin") && (pass.equals("password"))) {
+    if(user.equals(userT) && (pass.equals(passT))) {
       System.out.println("Welcome to JMoSS");  
-      public void getMenu();
+     getMenu();
     } else {
       System.out.println("You have entered the wrong details. Please try again.")
     }
