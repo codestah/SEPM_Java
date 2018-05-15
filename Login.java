@@ -1,47 +1,45 @@
 import java.util.Scanner;
-
+import java.io.*;
 public class Login {
 
-    Scanner login ;
+    Scanner login,fileScan ;
     File file ;
     public Login()
     {
       login = new Scanner(System.in);
       file = new File("login.csv");
     }
-    void Login()
+    public boolean login()
     {
 
-    String user, pass,userT,passT;
-
+    String user="", pass="",userT="",passT="";
+    System.out.println("===============Welcome to ABC Cineplex===============\n\tPlease enter your credentials.\n");
     System.out.println("Enter your username: ");
-    user = input.nextLine();
+    user = login.nextLine();
 
     System.out.println("Enter your password: ");
-    pass = input.nextLine();
+    pass = login.nextLine();
       try {
-        sc = new Scanner(file);
-        sc.useDelimiter(",");
+        fileScan = new Scanner(file);
+        fileScan.useDelimiter(",");
+        String str="";
         // Check if there is another line of input
-        while(sc.hasNextLine()){
-          String str = sc.nextLine();
-          while (sc.hasNext())
-          {
-            userT=sc.next();
-            passT=sc.next();
-          }
+        while(fileScan.hasNext()){
+            userT = fileScan.next();
+            passT=fileScan.next();
         }
 
       } catch (IOException  exp) {
         // TODO Auto-generated catch block
         exp.printStackTrace();
       }
-    
+
     if(user.equals(userT) && (pass.equals(passT))) {
-      System.out.println("Welcome to JMoSS");  
-     getMenu();
+      //System.out.println("Welcome to JMoSS");
+      return true;
     } else {
-      System.out.println("You have entered the wrong details. Please try again.")
+      System.out.println("You have entered the wrong details. Please try again.");
+      return false;
     }
 
   }

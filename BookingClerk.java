@@ -1,17 +1,18 @@
 import java.awt.Toolkit;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class BookingClerk extends Employee {
+public class BookingClerk {
   
   public BookingClerk () {
     // Allows no-arg constructor to be called when creating a booking clerk
   }
   
-  public BookingClerk(String username, String password) {
+ /* public BookingClerk(String username, String password) {
     super(username, password);
-  }
+  }*/
   
-  @Override
+
   public void getMenu() {
           int menuNumber = 0;
 					Scanner mainMenuOption = new Scanner(System.in);
@@ -80,7 +81,7 @@ public class BookingClerk extends Employee {
         } 
         if (cinemaMenu==6)
         {
-          public void getMenu();
+          getMenu();
         }
         
         if (cinemaMenu==7)
@@ -144,7 +145,7 @@ public class BookingClerk extends Employee {
         }
         if (movieNumber==6)
         {
-          public void getMenu();
+          getMenu();
         }
         
         if (movieNumber==7)
@@ -157,7 +158,7 @@ public class BookingClerk extends Employee {
         
       case 3:  
         Scanner createBookingOption = new Scanner(System.in);
-        int createBookingNumber = 0;
+        int bookingNumber = 0;
         System.out.println("Create a Booking");
         System.out.println("----------------------------------\n");
         System.out.println("1. Enter Movie Title");
@@ -167,11 +168,11 @@ public class BookingClerk extends Employee {
 				bookingNumber = createBookingOption.nextInt();
         System.out.println("\n");
   
-        if (createBookingNumber==1)
+        if (bookingNumber==1)
         {
           // Auto generate booking number
-          private static final AtomicInteger count = new AtomicInteger(0); 
-          private final int bookingID;
+          final AtomicInteger count = new AtomicInteger(0);
+          final int bookingID;
           bookingID = count.incrementAndGet();
           
           // Array list to store the booking information
@@ -193,7 +194,7 @@ public class BookingClerk extends Employee {
           System.out.print("You have selected: " + movie);
           
           // Enter Cinema Location
-          System.out.print("Enter Cinema Location: );
+          System.out.print("Enter Cinema Location:" );
           String cinema = bookingCinema.nextLine();   
           // Adding cinema to arrayList
           createBooking.add(cinema);
@@ -224,19 +225,19 @@ public class BookingClerk extends Employee {
           System.out.println("\n");
           System.out.print("Finalise Booking Y / N: ");
           
-          if (bookingBooking.nextChar().equals("Y")) {
+          if (bookingBooking.nextLine().equals("Y")) {
             // Enter logic to save this booking using the createBooking arraylist and include the booking number
           } else {
-            System.out.print("This booking has been cancelled.")
+            System.out.print("This booking has been cancelled.");
           }
                            
         }
-        if (createBookingNumber==2)
+        if (bookingNumber==2)
         {
-          public void getMenu();
+          getMenu();
         }
         
-        if (createBookingNumber==3)
+        if (bookingNumber==3)
         { 
           // Makes a beep sound upon exiting the system
           Toolkit tk = Toolkit.getDefaultToolkit();

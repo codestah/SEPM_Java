@@ -1,4 +1,4 @@
-public MovieTime
+public class MovieTime
 {
   private int time; //in the format hhmm
   private int date; //in the format ddmm

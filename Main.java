@@ -3,9 +3,17 @@ public class Main
 {
   
   public static void main(String[] args) {
+    Login loginObj=new Login();
+    BookingClerk clerkObj=new BookingClerk();
+    if(loginObj.login())
+    {
+        clerkObj.getMenu();
+    }
+    else
+    {
+        System.out.println("Failed to login");
+    }
 
-    //The main class to start the program
-    
   } // End Main Menu
 } // End Class
 
