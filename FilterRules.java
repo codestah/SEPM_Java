@@ -25,39 +25,42 @@ public class FilterRules {
 
         ArrayList<Movie> movies=new ArrayList<>();
         Movie currMovie=null;
-        for(int i=1;i<csv.size();i++) {
-            if(currMovie!=null)
-            {
+        for(int i=1;i<csv.size();) {
+            int movieIndex= searchMovie(movies,csv.get(i)[0]);
+          //  if(movieIndex==-1 )
+            //{
                 //if(csv.get(i)[0].equals(currMovie.movieName) || searchMovie(movies,csv.get(i)[0]))
-                int movieIndex= searchMovie(movies,csv.get(i)[0]);
-                if(movieIndex>=0)
+             //   movieIndex= searchMovie(movies,csv.get(i)[0]);
+                if(movieIndex>=0 )
                 {
-                    for(int j=1;j<csv.size();j++)
+                    for(int j=i;j<csv.size();j++)
                     {
                         int cinemaIndex = searchCinema(movies.get(movieIndex).cinemaList,csv.get(j)[1]);
-                        if(cinemaIndex>=0)
-                        {
-                            movies.get(movieIndex).cinemaList.get(cinemaIndex).addSession(new MovieTime(csv.get(j)[2],csv.get(j)[3]+" - "+ csv.get(j)[4],Integer.parseInt(csv.get(j)[5])));
-                        }
-                        else
-                        {
-                            movies.get(movieIndex).addCinema(csv.get(j)[1],new MovieTime(csv.get(j)[2],csv.get(j)[3]+" - "+ csv.get(j)[4],Integer.parseInt(csv.get(j)[5])));
+                        if(csv.get(j)[0].equals(movies.get(movieIndex).movieName)) {
+                            if (cinemaIndex >= 0 && !sessionExists(new MovieTime(csv.get(j)[2], csv.get(j)[3] + " - " + csv.get(j)[4], Integer.parseInt(csv.get(j)[5])),movies.get(movieIndex).cinemaList.get(cinemaIndex).cinemaTimeList)) {
+                                movies.get(movieIndex).cinemaList.get(cinemaIndex).addSession(new MovieTime(csv.get(j)[2], csv.get(j)[3] + " - " + csv.get(j)[4], Integer.parseInt(csv.get(j)[5])));
+                            } else {
+                                if(cinemaIndex==-1)
+                                movies.get(movieIndex).addCinema(csv.get(j)[1], new MovieTime(csv.get(j)[2], csv.get(j)[3] + " - " + csv.get(j)[4], Integer.parseInt(csv.get(j)[5])));
+                            }
                         }
                     }
+                    i+=movies.get(movieIndex).cinemaList.size();
                 }
                 else
                 {
                     currMovie=new Movie(csv.get(i)[0]);
                     currMovie.addCinema(csv.get(i)[1],new MovieTime(csv.get(i)[2],csv.get(i)[3]+" - "+csv.get(i)[4],Integer.parseInt(csv.get(i)[5])));
                     movies.add(currMovie);
+                    i++;
                 }
-            }
-            else
+            //}
+            /*else
             {
                 currMovie=new Movie(csv.get(i)[0]);
                 currMovie.addCinema(csv.get(i)[1],new MovieTime(csv.get(i)[2],csv.get(i)[3]+" - "+csv.get(i)[4],Integer.parseInt(csv.get(i)[5])));
                 movies.add(currMovie);
-            }
+            }*/
 
         }
         return movies;
@@ -83,7 +86,15 @@ public class FilterRules {
         return -1;
     }
 
-
+    boolean sessionExists(MovieTime session,ArrayList<MovieTime> sessionList)
+    {
+        for(MovieTime mt:sessionList)
+        {
+            if(mt.getTime().equals(session.getTime()) && mt.getDate().equals(session.getDate()))
+                return true;
+        }
+        return false;
+    }
 
     void DisplayByMovieName(List<String[]> csv,String movie)
     {

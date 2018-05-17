@@ -113,9 +113,8 @@ public class BookingClerk {
         
         if (cinemaMenu==7)
         {
-          Toolkit tk = Toolkit.getDefaultToolkit();
-          tk.beep();
-        } 
+            Exit();
+        }
         break;
         
         
@@ -184,9 +183,7 @@ public class BookingClerk {
         
         if (movieNumber==7)
         {
-          // Enter logic to exit the system
-          Toolkit tk = Toolkit.getDefaultToolkit();
-          tk.beep();
+         Exit();
         } 
         break;
         
@@ -301,15 +298,24 @@ public class BookingClerk {
         }
         
         if (bookingNumber==3)
-        { 
-          // Makes a beep sound upon exiting the system
-          Toolkit tk = Toolkit.getDefaultToolkit();
-          tk.beep(); 
-          // Enter logic to exit the system
+        {
+          Exit();
+
         }
       
         break;
+        case 5: Exit();
+            break;
       default: System.out.println("Invalid choice. Please select a valid choice from the menu.");
     }
+  }
+
+  void Exit()
+  {
+      // Makes a beep sound upon exiting the system
+      Toolkit tk = Toolkit.getDefaultToolkit();
+      tk.beep();
+      System.out.println("Application exited");
+      System.exit(0);
   }
 }
