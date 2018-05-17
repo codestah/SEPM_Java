@@ -10,12 +10,12 @@ public class FilterRules {
     void displayData(List<ArrayList<String>> csv)
     {
         for(int i=0;i<csv.size();i++)
+
         {
             for (int j=0;j<csv.get(i).size();j++)
             {
                 System.out.print(csv.get(i).get(j)+" | ");
             }
-            //System.out.println();
         }
     }
 

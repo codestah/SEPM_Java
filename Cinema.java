@@ -18,10 +18,10 @@ public class Cinema
         cinemaTimeList.add(session);
     }
 
-    public void addMovie(String movieName,MovieTime timeList)
+   /* public void addMovie(String movieName,MovieTime timeList)
     {
         Movie movie=new Movie(movieName);
         movie.movieTimeList.add(timeList);
         movieList.add(movie);
-    }
+    }*/
 }

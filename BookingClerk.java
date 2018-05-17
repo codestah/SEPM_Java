@@ -233,32 +233,50 @@ public class BookingClerk {
           //System.out.print("You have selected: " + movie);
           
           // Enter Cinema Location
-          System.out.print("Enter Cinema Location:" );
+          System.out.println("Enter Cinema Location:" );
           int cineChoice;
-          //movieList.get(movieChoice-1).cinemaList;
-          for (Cinema c:)
-          {
-           // System.out.println(cin);
-          }
+          ArrayList<Cinema> cine = movieList.get(movieChoice-1).cinemaList;
+          do {
+            for (Cinema c : cine) {
+              System.out.println((cine.indexOf(c) + 1) + ". " + c.cinemaName);
+            }
+
+            cineChoice = choice.nextInt();
+
+            if (cineChoice > 5 || cineChoice < 1)
+              System.out.println("Invalid cinema choice. Please select a cinema from the above options.");
+          }while(cineChoice > 5 || cineChoice < 1);
           //String cinema = bookingCinema.nextLine();
-          // Adding cinema to arrayList
-         // createBooking.add(cinema);
-          //System.out.print("You have selected: " + movie + ", " + cinema);
-          
+
+          movieLocation=cine.get(cineChoice-1).cinemaName;
+
+
           // Enter Date                 
-          System.out.print("Enter Date DDMM: ");
+          System.out.println("Select a session - Date(DDMM) Time(HHMM) from below: \n");
          // String date = bookingDate.nextLine();
-          // Adding date to arrayList
-          //createBooking.add(date);
-          //System.out.print("You have selected: " + movie + ", " + cinema + ", " + date);
-                          
-          // Enter Session Time                 
+          System.out.println("Choice No.\tDate\tTime\t\tSeats available");
+          int sessionChoice;
+          ArrayList<MovieTime> sessions=cine.get(cineChoice-1).cinemaTimeList;
+
+          do {
+            for (MovieTime c : sessions) {
+              System.out.println((sessions.indexOf(c) + 1) + "\t\t\t" + c.getDate()+"\t"+c.getTime()+"\t\t"+c.getSeats());
+            }
+
+            sessionChoice = choice.nextInt();
+
+            if (sessionChoice > sessions.size() || sessionChoice < 1)
+              System.out.println("Invalid session choice. Please select a valid cinema from the above options.");
+          }while(sessionChoice > sessions.size() || sessionChoice < 1);
+
+          /*
+          // Enter Session Time
           System.out.print("Enter Session HHMM: ");
           //String session = bookingSession.nextLine();
           // Adding session to arrayList
           //createBooking.add(session);
           //System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session);
-             
+             */
           // Enter Customer Email                
           System.out.print("Enter Customer Email: ");
           //String email = bookingEmail.nextLine();
