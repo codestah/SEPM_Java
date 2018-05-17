@@ -1,17 +1,35 @@
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BookingClerk {
-  
+    FileManager file;
+    FilterRules po;
+    List<String[]> csv;
+    ArrayList<Movie> movieList;
+    ArrayList<Cinema> cinemaList;
   public BookingClerk () {
     // Allows no-arg constructor to be called when creating a booking clerk
+      file=new FileManager("SessionList.csv");
+      movieList=new ArrayList<>();
+      cinemaList=new ArrayList<>();
+      po=new FilterRules();
+
+      //cinemaList=po.filterCinema(csv);
+      try {
+          csv= file.parseCSV();
+
+      } catch (FileNotFoundException e) {
+          e.printStackTrace();
+      }
+
+    movieList=po.filterMovie(csv);
   }
   
  /* public BookingClerk(String username, String password) {
     super(username, password);
   }*/
-  
 
   public void getMenu() {
           int menuNumber = 0;
@@ -44,40 +62,49 @@ public class BookingClerk {
         System.out.println("\n");
         System.out.print("Enter Menu Number: ");
 	      cinemaMenu = searchByCinemaMenuOption.nextInt();
-         
+
         if (cinemaMenu==1)
         {
           System.out.println("All Movie Sessions at St Kilda Cinema");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Movie Sessions at St Kilda Cinema
+          // Enter logic here to display: All Movie Sessions at St Kilda FilterRules
+
+                po.DisplayByCinema(csv,"St Kilda");
+
         }
         
         if (cinemaMenu==2)
         {
           System.out.println("All Movie Sessions at Melbourne CBD Cinema");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Movie Sessions at Melbourne CBD Cinema
+          // Enter logic here to display: All Movie Sessions at Melbourne CBD FilterRules
+
+                po.DisplayByCinema(csv,"St Kilda");
+
         }
         
         if (cinemaMenu==3)
         {
           System.out.println("All Movie Sessions at Fitzroy Cinema");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Movie Sessions at Fitzroy Cinema
+          // Enter logic here to display: All Movie Sessions at Fitzroy FilterRules
+            po.DisplayByCinema(csv,"Fitzroy");
         }
         
         if (cinemaMenu==4)
         {
           System.out.println("All Movie Sessions at Lilydale Cinema");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Movie Sessions at Lilydale Cinema
+          // Enter logic here to display: All Movie Sessions at Lilydale FilterRules
+            po.DisplayByCinema(csv,"Lilydale");
         }
         
         if (cinemaMenu==5)
         {
           System.out.println("All Movie Sessions at Sunbury Cinema");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Movie Sessions at Sunbury Cinema
+          // Enter logic here to display: All Movie Sessions at Sunbury FilterRules
+            po.DisplayByCinema(csv,"Sunbury");
         } 
         if (cinemaMenu==6)
         {
@@ -113,35 +140,42 @@ public class BookingClerk {
         {
           System.out.println("All Cinema Sessions for Black Panther");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Cinema Sessions for Black Panther
+          // Enter logic here to display: All FilterRules Sessions for Black Panther
+
+                po.DisplayByMovieName(csv,"Black Panther");
+
         }
         
         if (movieNumber==2)
         {
           System.out.println("All Cinema Sessions for The Avengers");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Cinema Sessions for The Avengers
+          // Enter logic here to display: All FilterRules Sessions for The Avengers
+            po.DisplayByMovieName(csv,"The Avengers");
         }
         
         if (movieNumber==3)
         {
           System.out.println("All Cinema Sessions for Guardians of the Galaxy");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Cinema Sessions for Guardians of the Galaxy
+          // Enter logic here to display: All FilterRules Sessions for Guardians of the Galaxy
+            po.DisplayByMovieName(csv,"Guardians of the Galaxy");
         }
         
         if (movieNumber==4)
         {
           System.out.println("All Cinema Sessions for Pacific Rim: Uprising");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Cinema Sessions for Pacific Rim: Uprising
+          // Enter logic here to display: All FilterRules Sessions for Pacific Rim: Uprising
+            po.DisplayByMovieName(csv,"Pacific Rim: Uprising");
         }
         
         if (movieNumber==5)
         {
           System.out.println("All Cinema Sessions for Tomb Raider");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Cinema Sessions for Tomb Raider
+          // Enter logic here to display: All FilterRules Sessions for Tomb Raider
+            po.DisplayByMovieName(csv,"Tomb Raider");
         }
         if (movieNumber==6)
         {
@@ -179,57 +213,68 @@ public class BookingClerk {
           ArrayList<String> createBooking = new ArrayList<String>();
           
           // Set up variables to store booking information
-          Scanner bookingMovie = new Scanner(System.in);
-          Scanner bookingCinema = new Scanner(System.in);
-          Scanner bookingDate = new Scanner(System.in);
-          Scanner bookingSession = new Scanner(System.in);
-          Scanner bookingEmail = new Scanner(System.in);
-          Scanner bookingBooking = new Scanner(System.in);
-          
+          Scanner choice=new Scanner(System.in);
+          String movieName,movieLocation,movieDate,movieTime;
           // Enter Movie Title
-          System.out.print("Enter Movie Title: ");
-          String movie = bookingMovie.nextLine();
+          System.out.println("Enter Movie Title Option: ");
+          int movieChoice;
+          do {
+            for (Movie m : movieList) {
+              System.out.println((movieList.indexOf(m) + 1) + ". " + m.movieName);
+            }
+            movieChoice = choice.nextInt();
+            if(movieChoice>5 || movieChoice<1) System.out.println("Invalid movie choice. Please select a movie from the above options.");
+          }while(movieChoice>5 || movieChoice<1);
+
+          movieName=movieList.get(movieChoice-1).movieName;
+
           // Adding movie to arrayList
-          createBooking.add(movie);
-          System.out.print("You have selected: " + movie);
+         // createBooking.add(movie);
+          //System.out.print("You have selected: " + movie);
           
           // Enter Cinema Location
           System.out.print("Enter Cinema Location:" );
-          String cinema = bookingCinema.nextLine();   
+          int cineChoice;
+          //movieList.get(movieChoice-1).cinemaList;
+          for (Cinema c:)
+          {
+           // System.out.println(cin);
+          }
+          //String cinema = bookingCinema.nextLine();
           // Adding cinema to arrayList
-          createBooking.add(cinema);
-          System.out.print("You have selected: " + movie + ", " + cinema);
+         // createBooking.add(cinema);
+          //System.out.print("You have selected: " + movie + ", " + cinema);
           
           // Enter Date                 
           System.out.print("Enter Date DDMM: ");
-          String date = bookingDate.nextLine();
+         // String date = bookingDate.nextLine();
           // Adding date to arrayList
-          createBooking.add(date);
-          System.out.print("You have selected: " + movie + ", " + cinema + ", " + date);               
+          //createBooking.add(date);
+          //System.out.print("You have selected: " + movie + ", " + cinema + ", " + date);
                           
           // Enter Session Time                 
           System.out.print("Enter Session HHMM: ");
-          String session = bookingSession.nextLine();
+          //String session = bookingSession.nextLine();
           // Adding session to arrayList
-          createBooking.add(session);
-          System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session); 
+          //createBooking.add(session);
+          //System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session);
              
           // Enter Customer Email                
           System.out.print("Enter Customer Email: ");
-          String email = bookingEmail.nextLine();
+          //String email = bookingEmail.nextLine();
           // Adding session to arrayList
-          createBooking.add(email);
+          //createBooking.add(email);
           System.out.println("\n");                 
-          System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session); 
-          System.out.println("Customer Email: " + email);
+        //  System.out.print("You have selected: " + movie + ", " + cinema + ", " + date + ", " + session);
+          //System.out.println("Customer Email: " + email);
           System.out.println("\n");
           System.out.print("Finalise Booking Y / N: ");
           
-          if (bookingBooking.nextLine().equals("Y")) {
+          /*if (bookingBooking.nextLine().equals("Y")) {
             // Enter logic to save this booking using the createBooking arraylist and include the booking number
           } else {
             System.out.print("This booking has been cancelled.");
-          }
+          }*/
                            
         }
         if (bookingNumber==2)

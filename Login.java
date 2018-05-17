@@ -38,7 +38,7 @@ public class Login {
       //System.out.println("Welcome to JMoSS");
       return true;
     } else {
-      System.out.println("You have entered the wrong details. Please try again.");
+      System.out.println("You have entered the wrong details.");
       return false;
     }
 
