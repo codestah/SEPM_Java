@@ -223,7 +223,9 @@ public class BookingClerk {
                         // Auto generate booking number
                        // final AtomicInteger count = new AtomicInteger(0);
                         int bookingID;
-                        bookingID = Integer.parseInt(bookingList.get(bookingList.size()-1)[0])+1;
+                        if(bookingList.get(bookingList.size()-1)[0].isEmpty()) bookingID=0;
+                        else
+                            bookingID = Integer.parseInt(bookingList.get(bookingList.size()-1)[0])+1;
 
                         // Set up variables to store booking information
                         Scanner choice = new Scanner(System.in);
