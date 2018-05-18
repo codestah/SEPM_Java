@@ -212,11 +212,18 @@ public class BookingClerk {
                     bookingNumber = createBookingOption.nextInt();
                     System.out.println("\n");
 
+                    fileBooking = new FileManager("Booking.csv");
+                    List<String[]> bookingList = null;
+                    try {
+                        bookingList=fileBooking.parseCSV();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     if (bookingNumber == 1) {
                         // Auto generate booking number
-                        final AtomicInteger count = new AtomicInteger(0);
-                        final int bookingID;
-                        bookingID = count.incrementAndGet();
+                       // final AtomicInteger count = new AtomicInteger(0);
+                        int bookingID;
+                        bookingID = Integer.parseInt(bookingList.get(bookingList.size()-1)[0])+1;
 
                         // Set up variables to store booking information
                         Scanner choice = new Scanner(System.in);
@@ -288,15 +295,13 @@ public class BookingClerk {
                             email = choice.nextLine();
                             if(email.isEmpty()) System.out.println("Please enter a valid email ID");
                         }while(email.isEmpty());
-                        System.out.println("\n");
                         System.out.print("Finalise Booking Y / N: ");
                         String confirmation = "";
                         do {
                             confirmation = choice.nextLine();
                             if (confirmation.equalsIgnoreCase("Y")) {
                                 // Enter logic to save this booking using the createBooking arraylist and include the booking number
-                                Booking booking = new Booking(count.toString(), movieName, movieLocation, movieDate, movieTime, email);
-                                fileBooking = new FileManager("Booking.csv");
+                                Booking booking = new Booking(Integer.toString(bookingID), movieName, movieLocation, movieDate, movieTime, email);
                                 fileBooking.writeFile("Booking.csv", booking);
                                 System.out.println("Booking made successfully");
                             } else if (confirmation.equalsIgnoreCase("N")) {

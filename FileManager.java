@@ -50,7 +50,7 @@ public class FileManager {
         destFileName=fileName;
         FileWriter fileWriter=null;
         try {
-            fileWriter=new FileWriter(destFileName);
+            fileWriter=new FileWriter(destFileName,true);
             final String COMMA_DELIMITER = ",";
             final String NEW_LINE_SEPARATOR = "\n";
 
@@ -79,4 +79,41 @@ public class FileManager {
 
         }
     }
+
+    public void updateSeatAvailability(String fileName,Booking booking)
+    {
+        destFileName=fileName;
+        FileWriter fileWriter=null;
+        try {
+            fileWriter=new FileWriter(destFileName,true);
+            final String COMMA_DELIMITER = ",";
+            final String NEW_LINE_SEPARATOR = "\n";
+
+            fileWriter.append(booking.getRefNo());
+            fileWriter.append(COMMA_DELIMITER);
+            fileWriter.append(booking.getMovieName());
+            fileWriter.append(COMMA_DELIMITER);
+            fileWriter.append(booking.getMovieLocation());
+            fileWriter.append(COMMA_DELIMITER);
+            fileWriter.append(booking.getMovieDate());
+            fileWriter.append(COMMA_DELIMITER);
+            fileWriter.append(booking.getMovieTime());
+            fileWriter.append(COMMA_DELIMITER);
+            fileWriter.append(booking.getEmail());
+            fileWriter.append(NEW_LINE_SEPARATOR);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();            }
+
+        }
+    }
+
+
 }
