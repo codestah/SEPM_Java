@@ -293,18 +293,18 @@ public class BookingClerk {
                         String confirmation = "";
                         do {
                             confirmation = choice.nextLine();
-                            if (confirmation.equals("Y")) {
+                            if (confirmation.equalsIgnoreCase("Y")) {
                                 // Enter logic to save this booking using the createBooking arraylist and include the booking number
                                 Booking booking = new Booking(count.toString(), movieName, movieLocation, movieDate, movieTime, email);
                                 fileBooking = new FileManager("Booking.csv");
                                 fileBooking.writeFile("Booking.csv", booking);
                                 System.out.println("Booking made successfully");
-                            } else if (confirmation.equals("N")) {
+                            } else if (confirmation.equalsIgnoreCase("N")) {
                                 System.out.print("This booking has been cancelled.");
                             } else {
                                 System.out.print("Invalid choice. Please select Yes(Y) or No(N)");
                             }
-                        } while (!(confirmation.equals("Y") || confirmation.equals("N")));
+                        } while (!(confirmation.equalsIgnoreCase("Y") || confirmation.equalsIgnoreCase("N")));
 
                     }
                     if (bookingNumber == 2) {
