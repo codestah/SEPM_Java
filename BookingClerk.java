@@ -56,7 +56,7 @@ public class BookingClerk {
         System.out.println("2. Melbourne CBD");
         System.out.println("3. Fitzroy");
         System.out.println("4. Lilydale");
-        System.out.println("5. Sunbury");
+        System.out.println("5. Sunshine");
         System.out.println("6. Back");
         System.out.println("7. Exit");
         System.out.println("\n");
@@ -70,7 +70,9 @@ public class BookingClerk {
           // Enter logic here to display: All Movie Sessions at St Kilda FilterRules
 
                 po.DisplayByCinema(csv,"St Kilda");
-
+                {
+        	 
+        }
         }
         
         if (cinemaMenu==2)
@@ -101,10 +103,10 @@ public class BookingClerk {
         
         if (cinemaMenu==5)
         {
-          System.out.println("All Movie Sessions at Sunbury Cinema");
+          System.out.println("All Movie Sessions at Sunshine Cinema");
           System.out.println("----------------------------------\n");
-          // Enter logic here to display: All Movie Sessions at Sunbury FilterRules
-            po.DisplayByCinema(csv,"Sunbury");
+          // Enter logic here to display: All Movie Sessions at Sunshine FilterRules
+            po.DisplayByCinema(csv,"Sunshine");
         } 
         if (cinemaMenu==6)
         {
@@ -112,11 +114,25 @@ public class BookingClerk {
         }
         
         if (cinemaMenu==7)
+
         {
             Exit();
         }
-        break;
         
+        System.out.println("Enter 1 to Go Back To Main Menu");
+        System.out.println("Enter 2 to exit");
+        
+        cinemaMenu = searchByCinemaMenuOption.nextInt();
+        
+  if (cinemaMenu==1)
+  {
+	  getMenu();
+  }
+  else if (cinemaMenu==2) 
+	  
+	  Exit();
+        
+        break;
         
         
       case 2: 
@@ -185,6 +201,19 @@ public class BookingClerk {
         {
          Exit();
         } 
+        System.out.println("Enter 1 to Go Back To Main Menu");
+        System.out.println("Enter 2 to exit");
+        
+        movieNumber = searchByMovieMenuOption.nextInt();
+        
+  if (movieNumber==1)
+  {
+	  getMenu();
+  }
+  else if (movieNumber==2) 
+	  
+	  Exit();
+  
         break;
         
       case 3:  
