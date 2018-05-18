@@ -11,14 +11,11 @@ public class Login {
     }
     public boolean login()
     {
-
+    	 int totalAttempts = 3;
+    	 
     String user="", pass="",userT="",passT="";
     System.out.println("===============Welcome to ABC Cineplex===============\n\tPlease enter your credentials.\n");
-    System.out.println("Enter your username: ");
-    user = login.nextLine();
-
-    System.out.println("Enter your password: ");
-    pass = login.nextLine();
+    
       try {
         fileScan = new Scanner(file);
         fileScan.useDelimiter(",");
@@ -33,14 +30,35 @@ public class Login {
         // TODO Auto-generated catch block
         exp.printStackTrace();
       }
+      
+      do {
+    	  
+      System.out.println("Enter your username: ");
+      user = login.nextLine();
 
+      System.out.println("Enter your password: ");
+      pass = login.nextLine();
+      
     if(user.equals(userT) && (pass.equals(passT))) {
       //System.out.println("Welcome to JMoSS");
       return true;
+      
     } else {
+    	 totalAttempts--;
+    	 
+    if (totalAttempts>0)
       System.out.println("You have entered the wrong details.");
-      return false;
+    else 
+    	System.out.println("Total Attempts Exceeded");
+      
     }
-
-  }
+      }
+    while(totalAttempts>0); 
+      
+    return false; 
+      }
 }
+
+    	 
+    	
+
