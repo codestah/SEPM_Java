@@ -305,6 +305,7 @@ public class BookingClerk {
                                 // Enter logic to save this booking using the createBooking arraylist and include the booking number
                                 Booking booking = new Booking(Integer.toString(bookingID), movieName, movieLocation, movieDate, movieTime, email);
                                 fileBooking.writeFile("Booking.csv", booking);
+                                fileSession.updateSeatAvailability("SessionList.csv",booking,1);
                                 System.out.println("Booking made successfully");
                             } else if (confirmation.equalsIgnoreCase("N")) {
                                 System.out.print("This booking has been cancelled.");

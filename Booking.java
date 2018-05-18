@@ -35,6 +35,11 @@ public class Booking {
         return movieTime;
     }
 
+    public String[] getMovieTime1() {
+        String movieTime1[]=getMovieTime().split(" - ");
+        return  movieTime1;
+    }
+
     public String getEmail() {
         return email;
     }
