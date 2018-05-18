@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 public class FilterRules {
 
@@ -66,6 +63,42 @@ public class FilterRules {
         return movies;
     }
 
+
+    int searchBooking(List<String[]> bookingList,String email,int operation)
+    {
+        int delete=-1;
+        Scanner choice =new Scanner(System.in);
+        ArrayList<String[]> selectedBooking=new ArrayList<>();
+        for(int i=0;i<bookingList.size();i++)
+        {
+            if(bookingList.get(i)[5].equals(email))
+                selectedBooking.add(bookingList.get(i));
+        }
+
+        if(selectedBooking.isEmpty())
+            System.out.println("No bookings exist for given email address");
+        else {
+            System.out.printf("%-15s","Ref No.");
+            System.out.printf("%-25s","Movie");
+            System.out.printf("%-25s","Cinema");
+            System.out.printf("%-15s","Date");
+            System.out.printf("%-15s","Time");
+            System.out.println();
+            for (int j = 0; j < selectedBooking.size(); j++) {
+                System.out.printf("%-15s",selectedBooking.get(j)[0]);
+                System.out.printf("%-25s",selectedBooking.get(j)[1] );
+                System.out.printf("%-25s",selectedBooking.get(j)[2]);
+                System.out.printf("%-15s",selectedBooking.get(j)[3]);
+                System.out.printf("%-15s",selectedBooking.get(j)[4]);
+                System.out.println();
+            }
+            if (operation == 1) {
+                System.out.println("Select the reference number for booking session you wish to cancel");
+                delete = choice.nextInt();
+            }
+        }
+        return delete;
+    }
     int searchCinema(ArrayList<Cinema> cinema,String search)
     {
         for(Cinema item:cinema)

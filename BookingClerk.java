@@ -35,18 +35,21 @@ public class BookingClerk {
     public void getMenu() {
         int menuNumber = 0;
         Scanner mainMenuOption = new Scanner(System.in);
-        System.out.println("Main Menu");
+
+        do {
+        System.out.println("\nMain Menu");
         System.out.println("-------------------------\n");
         System.out.println("1. Search Movie Sessions By Cinema");
         System.out.println("2. Search Movie Sessions By Movie Title");
         System.out.println("3. Create a Booking");
-        System.out.println("4. Delete a Booking");
-        System.out.println("5. Exit");
+        System.out.println("4. Search for a Booking");
+        System.out.println("5. Delete a Booking");
+        System.out.println("6. Exit");
         System.out.println("\n");
         System.out.print("Enter Menu Number: ");
         menuNumber = mainMenuOption.nextInt();
 
-        do {
+
             switch (menuNumber) {
                 case 1:
                     Scanner searchByCinemaMenuOption = new Scanner(System.in);
@@ -67,7 +70,7 @@ public class BookingClerk {
                     if (cinemaMenu == 1) {
                         System.out.println("All Movie Sessions at St Kilda Cinema");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All Movie Sessions at St Kilda FilterRules
+                        // Enter logic here to display: All Movie Sessions at St Kilda Cinemas
 
                         po.DisplayByCinema(csv, "St Kilda");
                         {
@@ -78,7 +81,7 @@ public class BookingClerk {
                     if (cinemaMenu == 2) {
                         System.out.println("All Movie Sessions at Melbourne CBD Cinema");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All Movie Sessions at Melbourne CBD FilterRules
+                        // Enter logic here to display: All Movie Sessions at Melbourne CBD Cinemas
 
                         po.DisplayByCinema(csv, "St Kilda");
 
@@ -87,21 +90,21 @@ public class BookingClerk {
                     if (cinemaMenu == 3) {
                         System.out.println("All Movie Sessions at Fitzroy Cinema");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All Movie Sessions at Fitzroy FilterRules
+                        // Enter logic here to display: All Movie Sessions at Fitzroy Cinemas
                         po.DisplayByCinema(csv, "Fitzroy");
                     }
 
                     if (cinemaMenu == 4) {
                         System.out.println("All Movie Sessions at Lilydale Cinema");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All Movie Sessions at Lilydale FilterRules
+                        // Enter logic here to display: All Movie Sessions at Lilydale Cinemas
                         po.DisplayByCinema(csv, "Lilydale");
                     }
 
                     if (cinemaMenu == 5) {
                         System.out.println("All Movie Sessions at Sunshine Cinema");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All Movie Sessions at Sunshine FilterRules
+                        // Enter logic here to display: All Movie Sessions at Sunshine Cinemas
                         po.DisplayByCinema(csv, "Sunshine");
                     }
                     if (cinemaMenu == 6) {
@@ -147,7 +150,7 @@ public class BookingClerk {
                     if (movieNumber == 1) {
                         System.out.println("All Cinema Sessions for Black Panther");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All FilterRules Sessions for Black Panther
+                        // Enter logic here to display: All Cinema Sessions for Black Panther
 
                         po.DisplayByMovieName(csv, "Black Panther");
 
@@ -156,28 +159,28 @@ public class BookingClerk {
                     if (movieNumber == 2) {
                         System.out.println("All Cinema Sessions for The Avengers");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All FilterRules Sessions for The Avengers
+                        // Enter logic here to display: All Cinema Sessions for The Avengers
                         po.DisplayByMovieName(csv, "The Avengers");
                     }
 
                     if (movieNumber == 3) {
                         System.out.println("All Cinema Sessions for Guardians of the Galaxy");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All FilterRules Sessions for Guardians of the Galaxy
+                        // Enter logic here to display: All Cinema Sessions for Guardians of the Galaxy
                         po.DisplayByMovieName(csv, "Guardians of the Galaxy");
                     }
 
                     if (movieNumber == 4) {
                         System.out.println("All Cinema Sessions for Pacific Rim: Uprising");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All FilterRules Sessions for Pacific Rim: Uprising
+                        // Enter logic here to display: All Cinema Sessions for Pacific Rim: Uprising
                         po.DisplayByMovieName(csv, "Pacific Rim: Uprising");
                     }
 
                     if (movieNumber == 5) {
                         System.out.println("All Cinema Sessions for Tomb Raider");
                         System.out.println("----------------------------------\n");
-                        // Enter logic here to display: All FilterRules Sessions for Tomb Raider
+                        // Enter logic here to display: All Cinema Sessions for Tomb Raider
                         po.DisplayByMovieName(csv, "Tomb Raider");
                     }
                     if (movieNumber == 6) {
@@ -306,6 +309,7 @@ public class BookingClerk {
                                 Booking booking = new Booking(Integer.toString(bookingID), movieName, movieLocation, movieDate, movieTime, email);
                                 fileBooking.writeFile("Booking.csv", booking);
                                 fileSession.updateSeatAvailability("SessionList.csv",booking,1);
+                                refreshFile();
                                 System.out.println("Booking made successfully");
                             } else if (confirmation.equalsIgnoreCase("N")) {
                                 System.out.print("This booking has been cancelled.");
@@ -325,7 +329,22 @@ public class BookingClerk {
                     }
 
                     break;
+                case 4: System.out.println("Enter booking email address");
+                        Scanner delete =new Scanner(System.in);
+                        String custEmail=delete.nextLine();
+                    fileBooking = new FileManager("Booking.csv");
+                    try {
+                        List<String[]> bookList= fileBooking.parseCSV();
+                        po.searchBooking(bookList,custEmail,0);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }finally {
+                        break;
+                    }
+
                 case 5:
+                    break;
+                case 6:
                     Exit();
                     break;
                 default:
@@ -341,6 +360,18 @@ public class BookingClerk {
             tk.beep();
             System.out.println("Application exited");
             System.exit(0);
+        }
+
+        void refreshFile(){
+
+            fileSession = new FileManager("SessionList.csv");
+            try {
+                csv = fileSession.parseCSV();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            movieList = po.filterMovie(csv);
+
         }
 
 }
