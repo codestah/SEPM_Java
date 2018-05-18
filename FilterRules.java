@@ -63,7 +63,16 @@ public class FilterRules {
         return movies;
     }
 
-
+    Booking deleteBooking(List<String[]> bookingList,String refNo)
+    {
+        Booking a=null;
+        for(int i=0;i<bookingList.size();i++)
+        {
+            if(bookingList.get(i)[0].equals(refNo))
+                a=new Booking(bookingList.get(i)[0],bookingList.get(i)[1],bookingList.get(i)[2],bookingList.get(i)[3],bookingList.get(i)[4],bookingList.get(i)[5]);
+        }
+        return a;
+    }
     int searchBooking(List<String[]> bookingList,String email,int operation)
     {
         int delete=-1;
@@ -95,6 +104,7 @@ public class FilterRules {
             if (operation == 1) {
                 System.out.println("Select the reference number for booking session you wish to cancel");
                 delete = choice.nextInt();
+                System.out.println("Do you confirm to delete booking? (Y/N)");
             }
         }
         return delete;

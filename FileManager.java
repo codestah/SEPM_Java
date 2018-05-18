@@ -81,6 +81,49 @@ public class FileManager {
         }
     }
 
+    public void deleteBookingEntry(String fileName,String refNo)
+    {
+        try {
+            csv = parseCSV();
+
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("B_" + fileName));
+        String line = "";
+        int seats = 0;
+        for (int i = 0; i < csv.size(); i++)
+
+        {
+            if (csv.get(i)[0].equals(refNo)) {
+                int c = 0;
+                while ((line = br.readLine()) != null) {
+                    if (c == i) {
+                        c++;
+                        continue;
+                    }
+                    bw.write(line);
+                    bw.newLine();
+                    c++;
+                }
+            }
+
+        }
+
+            if (br != null) br.close();
+            if (bw != null)
+                bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            File oldFile = new File(fileName);
+            oldFile.delete();
+
+            // And rename tmp file's name to old file name
+            File newFile = new File("B_" + fileName);
+            newFile.renameTo(oldFile);
+
+        }
+
+    }
     public void updateSeatAvailability(String fileName,Booking booking,int operation) {
         destFileName = fileName;
         FileWriter fileWriter = null;

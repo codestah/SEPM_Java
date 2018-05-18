@@ -1,4 +1,5 @@
 import java.awt.Toolkit;
+import java.awt.print.Book;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -216,7 +217,7 @@ public class BookingClerk {
                     System.out.println("\n");
 
                     fileBooking = new FileManager("Booking.csv");
-                    List<String[]> bookingList = null;
+                    List<String[]> bookingList = new ArrayList<String[]>();
                     try {
                         bookingList=fileBooking.parseCSV();
                     } catch (FileNotFoundException e) {
@@ -226,7 +227,7 @@ public class BookingClerk {
                         // Auto generate booking number
                        // final AtomicInteger count = new AtomicInteger(0);
                         int bookingID;
-                        if(bookingList.get(bookingList.size()-1)[0].isEmpty()) bookingID=0;
+                        if(bookingList.isEmpty()) bookingID=0;
                         else
                             bookingID = Integer.parseInt(bookingList.get(bookingList.size()-1)[0])+1;
 
@@ -246,10 +247,6 @@ public class BookingClerk {
                         } while (movieChoice > 5 || movieChoice < 1);
 
                         movieName = movieList.get(movieChoice - 1).movieName;
-
-                        // Adding movie to arrayList
-                        // createBooking.add(movie);
-                        //System.out.print("You have selected: " + movie);
 
                         // Enter Cinema Location
                         System.out.println("Enter Cinema Location:");
@@ -330,19 +327,44 @@ public class BookingClerk {
 
                     break;
                 case 4: System.out.println("Enter booking email address");
-                        Scanner delete =new Scanner(System.in);
-                        String custEmail=delete.nextLine();
+                        Scanner search =new Scanner(System.in);
+                        String custEmail=search.nextLine();
                     fileBooking = new FileManager("Booking.csv");
                     try {
                         List<String[]> bookList= fileBooking.parseCSV();
                         po.searchBooking(bookList,custEmail,0);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
-                    }finally {
-                        break;
                     }
+                    break;
+                case 5:System.out.println("Enter booking email address");
+                    Scanner delete =new Scanner(System.in);
+                    String customerEmail=delete.nextLine();
+                    fileBooking = new FileManager("Booking.csv");
 
-                case 5:
+                    try {
+                        List<String[]> bookList= fileBooking.parseCSV();
+                        int deleteSession = po.searchBooking(bookList,customerEmail,1);
+                        if(deleteSession==-1) break;
+                        String confirmation = "";
+                        Scanner choice=new Scanner(System.in);
+                        do {
+                            confirmation = choice.nextLine();
+                            if (confirmation.equalsIgnoreCase("Y")) {
+                                fileBooking.deleteBookingEntry("Booking.csv", Integer.toString(deleteSession));
+                                Booking deleteBooking = po.deleteBooking(bookList,Integer.toString(deleteSession));
+                                fileSession.updateSeatAvailability("SessionList.csv",deleteBooking ,2);
+                                refreshFile();
+                                System.out.println("Booking deleted successfully");
+                            } else if (confirmation.equalsIgnoreCase("N")) {
+                                System.out.print("This booking has been cancelled.");
+                            } else {
+                                System.out.print("Invalid choice. Please select Yes(Y) or No(N)");
+                            }
+                        }while (!(confirmation.equalsIgnoreCase("Y") || confirmation.equalsIgnoreCase("N")));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 6:
                     Exit();
@@ -365,6 +387,7 @@ public class BookingClerk {
         void refreshFile(){
 
             fileSession = new FileManager("SessionList.csv");
+            fileBooking=new FileManager("Booking.csv");
             try {
                 csv = fileSession.parseCSV();
             } catch (FileNotFoundException e) {
